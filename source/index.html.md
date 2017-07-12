@@ -1,9 +1,8 @@
 ---
-title: API Reference
+title: Bureau Works API
 
 language_tabs:
   - shell
-  - ruby
   - python
   - javascript
 
