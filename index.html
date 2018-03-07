@@ -1,0 +1,1390 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Bureau Works API</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>This API implements methods for creation and management of translation projects with <a href="https://bureau.works">Bureau Works</a>.</p>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>Before you use your API credentials, there are a few items that need to be checked first. Users in Works with a profile suitable 
+to request projects are bound to Clients. Clients are organizations or persons, and they allow for multiple users to share the 
+same workspace. Your <code class="prettyprint">Client</code> can be your own company, a corporation you work for, or youself.</p>
+
+<p>We need to make sure that a <code class="prettyprint">Client</code> has the following information on file:</p>
+
+<ul>
+<li>Country</li>
+<li>Currency</li>
+<li>Timezone (for properly calculating key dates)</li>
+</ul>
+
+<!---
+
+
+
+
+    AUTH
+
+
+
+
+-->
+
+<h1 id="authentication">Authentication</h1>
+
+<blockquote>
+<p>Auth example, uses a JSON model in the request body:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"accesskey"</span><span class="p">:</span><span class="s2">"eeecccff-9999-332f-333c-999999999999"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"secretAccesskey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/login"</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+  -X POST -d <span class="s1">'&lt;MODEL&gt;'</span>
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">X-AUTH-TOKEN: &lt;TOKEN&gt;</code></p>
+</blockquote>
+
+<p>Use this method to get the credentials necessary to access the API endpoints. </p>
+
+<p>If authentication is successful, returns a header <code class="prettyprint">X-AUTH-TOKEN</code> that must be used in all subsequent API calls:</p>
+
+<p><code class="prettyprint">X-AUTH-TOKEN: {token}</code></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://bureau.works/api/pub/v1/login</code></p>
+
+<aside class="notice">
+Please note that the API credentials are separated from your Bureau Works login and password. You must get your API credentials under the <b>My Account</b> section. 
+</aside>
+
+<!---
+
+
+
+
+    LOCALE
+
+
+
+
+-->
+
+<h1 id="locale">Locale</h1>
+
+<p>Methods that provide support data for <code class="prettyprint">Project</code> requests.</p>
+
+<!---
+
+
+
+
+    LANGS
+
+
+
+
+-->
+
+<h2 id="languages">Languages</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/language"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Abkhaz"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ab"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afar"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aa"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afrikaans"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"af"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>These are all available languages in Bureau Works. If your project demands a translation in a language that is not
+listed by this API, please contact us to resolve the issue.</p>
+
+<p>You must use the value in <code class="prettyprint">code</code> fields to populate requests with source or target languages.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://bureau.works/api/pub/v1/language</code></p>
+
+<!---
+
+
+
+
+    TIMEZONES
+
+
+
+
+-->
+
+<h2 id="timezones">Timezones</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/timezone"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> with a JSON formatted like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AET"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(GMT+10:00) AET"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Antarctica/DumontDUrville"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(GMT+10:00) Antarctica/DumontDUrville"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Asia/Ust-Nera"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(GMT+10:00) Asia/Ust-Nera"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Asia/Vladivostok"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(GMT+10:00) Asia/Vladivostok"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australia/ACT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(GMT+10:00) Australia/ACT"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Timezones are used according to a client&rsquo;s or person&rsquo;s location. When creating a project, you must specify a timezone in order to correctly calculate creation date, and also due and delivery dates.</p>
+
+<p>In your requests, you may use the <code class="prettyprint">key</code> to populate <code class="prettyprint">timezone</code> fields.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://bureau.works/api/pub/v1/timezone</code></p>
+
+<!---
+
+
+
+
+    PROJECT
+
+
+
+
+-->
+
+<h1 id="project">Project</h1>
+
+<p>Projects are the core of the workflows in Bureau Works. We need to create Projects to engage professionals and users alike, perform translations, reviews or publish deliverables to
+our clients. With these APIs, you can create and manage your own projects, as well as check for deliveries, approvals and get cost information. With the Project API, you will be able
+to push files for translation, and receive the deliverables programatically.</p>
+
+<p>A <code class="prettyprint">Project</code> creation must follow this workflow:</p>
+
+<ul>
+<li>Create a <code class="prettyprint">Project</code> wireframe, with languages and services - <code class="prettyprint">Project</code> is created with a <code class="prettyprint">Preparing</code> status</li>
+<li>Upload files to the desired services - only <code class="prettyprint">Translation</code> services may be analyzed and counted automatically</li>
+<li>Finish &ldquo;preparing&rdquo; your projects, once you finish uploading file,s by invoking the <code class="prettyprint">ready</code> method - <code class="prettyprint">Project</code> is transitioned to a <code class="prettyprint">Pending</code> state</li>
+<li>While <code class="prettyprint">Pending</code>, you may approve or cancel the <code class="prettyprint">Project</code> - approving a project will send it to production</li>
+</ul>
+
+<!---
+
+
+
+
+    PROJECT / SERVICES
+
+
+
+
+-->
+
+<h2 id="services">Services</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/service"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Translation"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sworn Translation"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Transcription"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Subtitling"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Formatting &amp; Design"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Voiceover"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Interpretation"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Product Testing"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In-Country Review"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Project Management"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"File Engineering"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Video QA"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This method returns all <code class="prettyprint">Services</code> available in the API, the most common is <code class="prettyprint">Translation</code>. You can create projects with one or more 
+<code class="prettyprint">Services</code>, by using the <code class="prettyprint">id</code> attribute in the requests that require this specification.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://bureau.works/api/pub/v1/service</code></p>
+
+<!---
+
+
+
+
+    PROJECT / CREATE
+
+
+
+
+-->
+
+<h2 id="create-project">Create Project</h2>
+
+<blockquote>
+<p>Request with this <code class="prettyprint">model</code> in the body of the request, where <code class="prettyprint">sourceLanguage</code> and <code class="prettyprint">targetLanguages</code> are codes from the Language API, and <code class="prettyprint">services</code> are IDs from the Service API.</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Test project 004"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sourceLanguage"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"en_us"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"targetLanguages"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"pt_br"</span><span class="p">,</span><span class="w"> </span><span class="s2">"es"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"services"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"You can add some notes here"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"desiredDeliveryDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1500392096126</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+  -X POST -d <span class="s1">'&lt;MODEL&gt;'</span>
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10228</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clientName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bureau Translations"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B-1865-72739"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test project AEM3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sourceLanguage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pt_br"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"quoteDueDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500390746451</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"creationDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1520385139654</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PREPARING"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"grandTotal"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"delivered"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"targetLanguages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"en_us"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"es"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13769</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serviceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serviceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Translation"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"originalFiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"filesDeliveredByManagers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"deliveries"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"savings"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"grandTotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"jobs"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This will create a Project &ldquo;wireframe&rdquo;, with a <code class="prettyprint">Preparing</code> state. This means that the newly created project is ready to receive
+files associated to all service items selected. You don&rsquo;t need to upload files for all service items, but usually a <code class="prettyprint">Translation</code>
+requires some files. Services that not necessarily require files are Interpreation, Consulting, Project Management, etc.</p>
+
+<p>The DTO (Data Transfer Object) returned by this request is a simple representation of the <code class="prettyprint">Project</code>. You will need some of this information
+in order to proceed. Some key attributes to note here:</p>
+
+<ul>
+<li><code class="prettyprint">id</code> is the unique ID of the newly created <code class="prettyprint">Project</code></li>
+<li><code class="prettyprint">name</code> is an internal identifier and will be pointed out in Bureau Works, some reports, etc.</li>
+<li><code class="prettyprint">quoteDueDate</code> will be the millisecond representation of the desired date you submitted. This date may change depending on the analysis and
+word count to be performed afterwards. If a desired date will occur before the calculated due date, the project may incur rush fees.</li>
+<li><code class="prettyprint">items</code> is an array with the services you selected. A given item&rsquo;s <code class="prettyprint">id</code> is also unique accross the system, and you will need this value to
+submit files for these services.</li>
+<li><code class="prettyprint">originalFiles</code> will contain the files you submit.</li>
+<li><code class="prettyprint">filesDeliveredByManagers</code> our project managers can also deliver files, perhaps after review rounds or other services, and here&rsquo;s where they will appear.</li>
+</ul>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://bureau.works/api/pub/v1/project</code></p>
+
+<!---
+
+
+
+
+    PROJECT / FILE UPLOAD
+
+
+
+
+-->
+
+<h2 id="upload-files-to-a-project">Upload Files to a Project</h2>
+<pre class="highlight shell tab-shell"><code>curl -i -X POST -v -F <span class="s2">"file=@/home/user/Desktop/file.docx"</span>
+  <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/file/{serviceItemId}"</span>
+  -H <span class="s2">"Content-Type: multipart/form-data"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+
+<p>This method returns an <code class="prettyprint">HTTP 200</code> response if the upload is successful. This method is synchronous, so depending on the file size, a typical upload can take 
+a few seconds to a couple of minutes for larger files, like a 50MB Text Document. During the upload process, a job may be created in the cat tool, which further
+delays a response.</p>
+
+<p>Each request will upload one file. If you upload the same file more than one time, it will be overwritten.</p>
+
+<p>You must upload all your files to finish the preparation of the project for quoting.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://bureau.works/api/pub/v1/project/{id}/file/{serviceItemId}</code></p>
+
+<!---
+
+
+
+
+    PROJECT / READY
+
+
+
+
+-->
+
+<h2 id="submit-project-for-quoting">Submit Project for Quoting</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/ready"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+  -X POST
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"projectId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1919</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"inputWordsCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">6365</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">1654.9</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"savings"</span><span class="p">:</span><span class="w"> </span><span class="mf">43.758</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"grandTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">1611.142</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"langPairCosts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"sourceLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pt_br"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_us"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serviceItemId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2699</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">6365</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"wordFullPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">827.45</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"savings"</span><span class="p">:</span><span class="w"> </span><span class="mf">21.879</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"grandTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">805.571</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"translationMatches"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 50-74% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.065</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation Repetitions"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">187</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.013</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.431</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 0-49% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">6178</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">803.14</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 85-94% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.039</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 75-84% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.052</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 95-99% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.026</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation Context TM"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.013</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 100% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.013</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"sourceLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pt_br"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"es"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serviceItemId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2699</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">6365</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"wordFullPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">827.45</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"savings"</span><span class="p">:</span><span class="w"> </span><span class="mf">21.879</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"grandTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">805.571</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"translationMatches"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 50-74% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.065</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation Repetitions"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">187</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.013</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.431</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 0-49% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">6178</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">803.14</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 85-94% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.039</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 75-84% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.052</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 95-99% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.026</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation Context TM"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.013</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 100% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.013</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"serviceItemCosts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"serviceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serviceItemId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2699</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serviceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Translation"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">12730</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">1654.9</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"savings"</span><span class="p">:</span><span class="w"> </span><span class="mf">43.758</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"grandTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">1611.142</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>When you&rsquo;re done uploading your files, invoke this method to signal to Bureau Works that your <code class="prettyprint">Project</code> is ready for quoting. This will trigger an analysis
+tool that will try to parse and analyze the data. If the files are suitable for analysis, this method will return the cost structure. Otherwise, the quote will
+update by our team and you will have that information in the system within a couple of hours if the project is submitted in business hours.</p>
+
+<p>The DTO returned in JSON format contains the cost structure per Service Item and per language. Here are some key attributes:</p>
+
+<ul>
+<li><code class="prettyprint">inputWordsCount</code> this is the total word count for your project.</li>
+<li><code class="prettyprint">subtotal</code> is the cost of the project, the gross cost, without leveraging of Translation Memory.</li>
+<li><code class="prettyprint">savings</code> represents the value amount of savings due to Translation Memory leveraging.</li>
+<li><code class="prettyprint">grandTotal</code> is the the actual value you owe if you approve your project.</li>
+<li><code class="prettyprint">langPairCosts</code> is an array with a detailed breakdown of costs per target language, with the Translation Matches included.</li>
+</ul>
+
+<p>If the <code class="prettyprint">Project</code> is not analyzed automatically, it will return a JSON but with blank values and zeroes. That means that our team will provide a manual update, 
+and in a similar structure.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://bureau.works/api/pub/v1/project/{id}/ready</code></p>
+
+<!---
+
+
+
+
+    PROJECT / APPROVE
+
+
+
+
+-->
+
+<h2 id="approve-a-project">Approve a Project</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/approve"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+  -X POST
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+
+<p>When you approve a project, this will trigger some actions in Bureau Works: Project Managers will be notified and your <code class="prettyprint">Project</code> will be eligible for
+accounting/receivables.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://bureau.works/api/pub/v1/project/{id}/approve</code></p>
+
+<!---
+
+
+
+
+    PROJECT / CANCEL
+
+
+
+
+-->
+
+<h2 id="cancel-a-project">Cancel a Project</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/cancel"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+  -X POST
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+
+<p>This method will cancel a project, with no penalties involved.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://bureau.works/api/pub/v1/project/{id}/cancel</code></p>
+
+<!---
+
+
+
+
+    PROJECT / GET BY STATUS
+
+
+
+
+-->
+
+<h2 id="get-projects-by-status">Get Projects by Status</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project?status=PENDING"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1919</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"clientName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bureau Translations"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B-17199-56225"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test project 005"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sourceLanguage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pt_br"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"quoteDueDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500665954789</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"creationDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500406625160</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"grandTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">1611.142</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivered"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"targetLanguages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"en_us"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"es"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2699</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"serviceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"serviceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Translation"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"originalFiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"test.docx"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ohplaces.txt"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"filesDeliveredByManagers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="s2">"deliveries"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">12730</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">1654.9</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"savings"</span><span class="p">:</span><span class="w"> </span><span class="mf">43.758</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"grandTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">1611.142</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets a list of projects, by passing at least one <code class="prettyprint">status</code> as parameter. You can provide more than one status, but at least one.
+An example request would be, which would list all pending AND approved projects for your organization in the system:</p>
+
+<p><code class="prettyprint">GET /api/pub/v1/project?status=PENDING&amp;status=APPROVED</code></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/pub/v1/project</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>YES</td>
+<td>A status to filter the request. Valid statuses are <code class="prettyprint">IN_PREPARATION</code>, <code class="prettyprint">PENDING</code>, <code class="prettyprint">APPROVED</code>, <code class="prettyprint">CANCELLED</code> and <code class="prettyprint">INVOICED</code></td>
+</tr>
+</tbody></table>
+
+<!---
+
+
+
+
+    PROJECT / GET ONE
+
+
+
+
+-->
+
+<h2 id="get-project">Get Project</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10227</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clientName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bureau Translations"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B-1865-63079"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test project AEM2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sourceLanguage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pt_br"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"quoteDueDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1520462190263</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"creationDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1520375479574</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"grandTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">60826.374</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"delivered"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"targetLanguages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"en_us"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"es"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13768</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serviceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serviceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Translation"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"originalFiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"ohplaces.txt"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"filesDeliveredByManagers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"deliveries"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">1854</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">61302.51</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"savings"</span><span class="p">:</span><span class="w"> </span><span class="mf">476.136</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"grandTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">60826.374</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"jobs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"serviceItemId"</span><span class="p">:</span><span class="w"> </span><span class="mi">13768</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"sourceLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pt_br"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"targetLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_us"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"fileName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ohplaces.txt"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"READY_FOR_TRANSLATION"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"statusChangeTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"serviceItemId"</span><span class="p">:</span><span class="w"> </span><span class="mi">13768</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"sourceLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pt_br"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"targetLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"es"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"fileName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ohplaces.txt"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"READY_FOR_TRANSLATION"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"statusChangeTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retrieves a project by passing its unique <code class="prettyprint">id</code> to this method. </p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/pub/v1/project/{id}</code></p>
+
+<!---
+
+
+
+
+    PROJECT / GET COST
+
+
+
+
+-->
+
+<h2 id="get-project-costs">Get Project Costs</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/cost"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"projectId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1919</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"inputWordsCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">6365</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">1654.9</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"savings"</span><span class="p">:</span><span class="w"> </span><span class="mf">43.758</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"grandTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">1611.142</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"langPairCosts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"sourceLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pt_br"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_us"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serviceItemId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2699</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">6365</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"wordFullPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">827.45</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"savings"</span><span class="p">:</span><span class="w"> </span><span class="mf">21.879</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"grandTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">805.571</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"translationMatches"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 50-74% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.065</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation Repetitions"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">187</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.013</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.431</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 0-49% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">6178</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">803.14</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 85-94% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.039</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 75-84% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.052</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 95-99% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.026</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation Context TM"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.013</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 100% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.013</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"sourceLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pt_br"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"es"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serviceItemId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2699</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">6365</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"wordFullPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">827.45</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"savings"</span><span class="p">:</span><span class="w"> </span><span class="mf">21.879</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"grandTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">805.571</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"translationMatches"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 50-74% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.065</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation Repetitions"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">187</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.013</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.431</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 0-49% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">6178</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">803.14</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 85-94% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.039</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 75-84% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.052</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 95-99% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.026</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation Context TM"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.013</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Words Translation 100% Match"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"costPerItem"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.013</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"serviceItemCosts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"serviceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serviceItemId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2699</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serviceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Translation"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">12730</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">1654.9</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"savings"</span><span class="p">:</span><span class="w"> </span><span class="mf">43.758</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"grandTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">1611.142</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This method returns all costs related to the project with <code class="prettyprint">id</code>. Whether the costs will come from an automatic analysis or a manual input, these costs are grouped by language and by service items.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/pub/v1/project/{id}/cost</code></p>
+
+<!---
+
+
+
+
+    PROJECT / GET ITEMS
+
+
+
+
+-->
+
+<h2 id="get-project-items">Get Project Items</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/items"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13768</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"serviceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"serviceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Translation"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"originalFiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"ohplaces.txt"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"filesDeliveredByManagers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"deliveries"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">1854</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">61302.51</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"savings"</span><span class="p">:</span><span class="w"> </span><span class="mf">476.136</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"grandTotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">60826.374</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"jobs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"serviceItemId"</span><span class="p">:</span><span class="w"> </span><span class="mi">13768</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"sourceLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pt_br"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"targetLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_us"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fileName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ohplaces.txt"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"READY_FOR_TRANSLATION"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"statusChangeTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"serviceItemId"</span><span class="p">:</span><span class="w"> </span><span class="mi">13768</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"sourceLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pt_br"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"targetLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"es"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fileName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ohplaces.txt"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"READY_FOR_TRANSLATION"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"statusChangeTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This method returns all items (service items and jobs) related to the project with <code class="prettyprint">id</code>. The array <code class="prettyprint">jobs</code> contains information about individual jobs, i.e.,
+per language and unique file within that project and service scope. Possible statuses for <code class="prettyprint">jobs</code> are: <code class="prettyprint">NEW</code>, <code class="prettyprint">READY_FOR_TRANSLATION</code>, <code class="prettyprint">TRANSLATION_IN_PROGRESS</code>, <code class="prettyprint">TRANSLATION_APPROVED</code>, <code class="prettyprint">TRANSLATION_REJECTED</code>, <code class="prettyprint">TRANSLATION_DELIVERED</code> and <code class="prettyprint">PROJECT_CANCELLED</code>, where:</p>
+
+<p><code class="prettyprint">NEW</code> - file has just been uploaded.</p>
+
+<p><code class="prettyprint">READY_FOR_TRANSLATION</code> - project is pending, waiting for approval</p>
+
+<p><code class="prettyprint">TRANSLATION_IN_PROGRESS</code> - project was approved, so jobs will transition to this</p>
+
+<p><code class="prettyprint">TRANSLATION_APPROVED</code> - user calls the <code class="prettyprint">approve-job</code> endpoint to mark a job as accepted</p>
+
+<p><code class="prettyprint">TRANSLATION_REJECTED</code> - user calls the <code class="prettyprint">reject-job</code> endpoint and the job is marked as rejected</p>
+
+<p><code class="prettyprint">TRANSLATION_DELIVERED</code> - translation is delivered by Bureau Works and corresponding translated file is available in the <code class="prettyprint">deliveries</code> array</p>
+
+<p><code class="prettyprint">PROJECT_CANCELLED</code> - the project has been cancelled for some reason, rendering all jobs as invalid</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/pub/v1/project/{id}/items</code></p>
+
+<!---
+
+
+
+
+    PROJECT / APPROVE JOBS/ITEMS
+
+
+
+
+-->
+
+<h2 id="approve-project-jobs-items">Approve Project Jobs / Items</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/approve-job/{jobId}"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+
+<p>This endpoint is used in some cases where the client wants to &ldquo;mark&rdquo; a given job as approved. A common use-case is in API integrations where a polling task
+will monitor this approval to effectively download the translated files.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/pub/v1/project/{id}/approve-job/{jobId}</code></p>
+
+<!---
+
+
+
+
+    PROJECT / REJECT JOBS/ITEMS
+
+
+
+
+-->
+
+<h2 id="reject-project-jobs-items">Reject Project Jobs / Items</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/reject-job/{jobId}"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+
+<p>This endpoint is used in some cases where the client wants to &ldquo;mark&rdquo; a given job as rejected. A common use-case is in API integrations where a polling task
+will monitor this reject to disregard or request a new translation job.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/pub/v1/project/{id}/reject-job/{jobId}</code></p>
+
+          <h1 id="errors">Errors</h1>
+
+<p>Bureau Works API Error Codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request &ndash; Your request went wrong due to a lack of information</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Some errors, like <code class="prettyprint">Bad Request</code> come with JSON to inform you what went wrong, like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"exception"</span><span class="p">:</span><span class="w"> </span><span class="s2">"java.lang.NullPointerException"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NullPointerException: Client has no country associated"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
