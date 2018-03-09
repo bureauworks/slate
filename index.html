@@ -612,8 +612,28 @@ submit files for these services.</li>
 <blockquote>
 <p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
 </blockquote>
-
-<p>This method returns an <code class="prettyprint">HTTP 200</code> response if the upload is successful. This method is synchronous, so depending on the file size, a typical upload can take 
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"serviceItemId"</span><span class="p">:</span><span class="w"> </span><span class="mi">13770</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sourceLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pt_br"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"targetLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_us"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fileName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BT_JD_Template_.docx"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NEW"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"statusChangeTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1520572747693</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"serviceItemId"</span><span class="p">:</span><span class="w"> </span><span class="mi">13770</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sourceLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pt_br"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"targetLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"es"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fileName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BT_JD_Template_.docx"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NEW"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"statusChangeTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1520572747693</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This method returns an <code class="prettyprint">HTTP 200</code> response if the upload is successful. The response body contains information about the job, such as its ID and status. This method is synchronous, so depending on the file size, a typical upload can take 
 a few seconds to a couple of minutes for larger files, like a 50MB Text Document. During the upload process, a job may be created in the cat tool, which further
 delays a response.</p>
 
