@@ -1345,6 +1345,69 @@ will monitor this reject to disregard or request a new translation job.</p>
 
 <p><code class="prettyprint">GET /api/pub/v1/project/{id}/reject-job/{jobId}</code></p>
 
+<!---
+
+
+
+
+    DOWNLOAD FILES
+
+
+
+
+-->
+
+<h2 id="download-delivered-files-no-language-provided">Download Delivered Files (NO language provided)</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/{serviceItemId}/{filename}/"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"signed_request"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;direct_download_url&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint will download a file that is listed in the <code class="prettyprint">deliveries</code> array of the higher level object <code class="prettyprint">item</code>, an instance of a Service Item. This endpoint does not need a language specified, because the file path may contain the language reference already, such as <code class="prettyprint">&lt;language&gt;/&lt;filename&gt;</code>.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/pub/v1/project/{id}/{serviceItemId}/{filename}/</code></p>
+
+<h2 id="download-delivered-files-language-provided">Download Delivered Files (language provided)</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/{serviceItemId}/{lang}/{filename}/"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"signed_request"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;direct_download_url&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint will download a file that is listed in the <code class="prettyprint">deliveries</code> array of the higher level object <code class="prettyprint">item</code>, an instance of a Service Item. This endpoint needs a language specified.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/pub/v1/project/{id}/{serviceItemId}/{lang}/{filename}/</code></p>
+
+<h2 id="download-delivered-files-by-se-language-provided">Download Delivered Files by Se (language provided)</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/delivered/{serviceItemFileId}/"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"signed_request"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://&lt;direct_download_url&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint will download a file that is listed in the <code class="prettyprint">deliveredFile</code> attribute of the <code class="prettyprint">job</code> instance. This endpoint should be invoked only when the job status is <code class="prettyprint">TRANSLATION_DELIVERED</code>.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/pub/v1/project/{id}/delivered/{serviceItemFileId}/</code></p>
+
           <h1 id="errors">Errors</h1>
 
 <p>Bureau Works API Error Codes:</p>
