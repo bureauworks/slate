@@ -1304,8 +1304,9 @@ per language and unique file within that project and service scope. Possible sta
 -->
 
 <h2 id="approve-project-jobs-items">Approve Project Jobs / Items</h2>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/approve-job/{jobId}"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/approve-job/{serviceItemFileId}"</span>
   -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+  -X POST
 </code></pre>
 <blockquote>
 <p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
@@ -1316,7 +1317,7 @@ will monitor this approval to effectively download the translated files.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET /api/pub/v1/project/{id}/approve-job/{jobId}</code></p>
+<p><code class="prettyprint">POST /api/pub/v1/project/{id}/approve-job/{serviceItemFileId}</code></p>
 
 <!---
 
@@ -1331,8 +1332,9 @@ will monitor this approval to effectively download the translated files.</p>
 -->
 
 <h2 id="reject-project-jobs-items">Reject Project Jobs / Items</h2>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/reject-job/{jobId}"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/reject-job/{serviceItemFileId}"</span>
   -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+  -X POST
 </code></pre>
 <blockquote>
 <p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
@@ -1343,7 +1345,7 @@ will monitor this reject to disregard or request a new translation job.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET /api/pub/v1/project/{id}/reject-job/{jobId}</code></p>
+<p><code class="prettyprint">POST /api/pub/v1/project/{id}/reject-job/{serviceItemFileId}</code></p>
 
 <!---
 
@@ -1392,7 +1394,7 @@ will monitor this reject to disregard or request a new translation job.</p>
 <p><code class="prettyprint">GET /api/pub/v1/project/{id}/{serviceItemId}/{lang}/{filename}/</code></p>
 
 <h2 id="download-delivered-files-by-job-id">Download Delivered Files by Job ID</h2>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/delivered/{serviceItemFileId}/"</span>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/delivered/{serviceItemFileId}"</span>
   -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
 </code></pre>
 <blockquote>
