@@ -645,6 +645,27 @@ delays a response.</p>
 
 <p><code class="prettyprint">POST https://bureau.works/api/pub/v1/project/{id}/file/{serviceItemId}</code></p>
 
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>YES</td>
+<td>The project ID</td>
+</tr>
+<tr>
+<td>serviceItemId</td>
+<td>YES</td>
+<td>The service item ID, returned as part of the project structure</td>
+</tr>
+</tbody></table>
+
 <!---
 
 
@@ -828,6 +849,22 @@ and in a similar structure.</p>
 
 <p><code class="prettyprint">POST https://bureau.works/api/pub/v1/project/{id}/ready</code></p>
 
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>YES</td>
+<td>The project ID</td>
+</tr>
+</tbody></table>
+
 <!---
 
 
@@ -856,6 +893,22 @@ accounting/receivables.</p>
 
 <p><code class="prettyprint">POST https://bureau.works/api/pub/v1/project/{id}/approve</code></p>
 
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>YES</td>
+<td>The project ID</td>
+</tr>
+</tbody></table>
+
 <!---
 
 
@@ -882,6 +935,22 @@ accounting/receivables.</p>
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">POST https://bureau.works/api/pub/v1/project/{id}/cancel</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>YES</td>
+<td>The project ID</td>
+</tr>
+</tbody></table>
 
 <!---
 
@@ -962,7 +1031,7 @@ An example request would be, which would list all pending AND approved projects 
 <tr>
 <td>status</td>
 <td>YES</td>
-<td>A status to filter the request. Valid statuses are <code class="prettyprint">IN_PREPARATION</code>, <code class="prettyprint">PENDING</code>, <code class="prettyprint">APPROVED</code>, <code class="prettyprint">CANCELLED</code> and <code class="prettyprint">INVOICED</code></td>
+<td>A status to filter the request. Valid statuses are <code class="prettyprint">PREPARING</code>, <code class="prettyprint">PENDING</code>, <code class="prettyprint">APPROVED</code>, <code class="prettyprint">CANCELLED</code> and <code class="prettyprint">INVOICED</code></td>
 </tr>
 </tbody></table>
 
@@ -1046,6 +1115,22 @@ An example request would be, which would list all pending AND approved projects 
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/pub/v1/project/{id}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>YES</td>
+<td>The project ID</td>
+</tr>
+</tbody></table>
 
 <!---
 
@@ -1214,6 +1299,22 @@ An example request would be, which would list all pending AND approved projects 
 
 <p><code class="prettyprint">GET /api/pub/v1/project/{id}/cost</code></p>
 
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>YES</td>
+<td>The project ID</td>
+</tr>
+</tbody></table>
+
 <!---
 
 
@@ -1291,6 +1392,22 @@ per language and unique file within that project and service scope. Possible sta
 
 <p><code class="prettyprint">GET /api/pub/v1/project/{id}/items</code></p>
 
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>YES</td>
+<td>The project ID</td>
+</tr>
+</tbody></table>
+
 <!---
 
 
@@ -1319,6 +1436,27 @@ will monitor this approval to effectively download the translated files.</p>
 
 <p><code class="prettyprint">POST /api/pub/v1/project/{id}/approve-job/{serviceItemFileId}</code></p>
 
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>YES</td>
+<td>The project ID</td>
+</tr>
+<tr>
+<td>serviceItemFileId</td>
+<td>YES</td>
+<td>The service item file <code class="prettyprint">job</code> ID, returned as part of the jobs structure for <code class="prettyprint">items</code></td>
+</tr>
+</tbody></table>
+
 <!---
 
 
@@ -1346,6 +1484,27 @@ will monitor this reject to disregard or request a new translation job.</p>
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">POST /api/pub/v1/project/{id}/reject-job/{serviceItemFileId}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>YES</td>
+<td>The project ID</td>
+</tr>
+<tr>
+<td>serviceItemFileId</td>
+<td>YES</td>
+<td>The service item file <code class="prettyprint">job</code> ID, returned as part of the jobs structure for <code class="prettyprint">items</code></td>
+</tr>
+</tbody></table>
 
 <!---
 
@@ -1376,6 +1535,32 @@ will monitor this reject to disregard or request a new translation job.</p>
 
 <p><code class="prettyprint">GET /api/pub/v1/project/{id}/{serviceItemId}/{filename}/</code></p>
 
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>YES</td>
+<td>The project ID</td>
+</tr>
+<tr>
+<td>serviceItemId</td>
+<td>YES</td>
+<td>The Service Item ID</td>
+</tr>
+<tr>
+<td>filename</td>
+<td>YES</td>
+<td>The filename as displayed in the <code class="prettyprint">deliveries</code> array, including language directory if any</td>
+</tr>
+</tbody></table>
+
 <h2 id="download-delivered-files-language-provided">Download Delivered Files (language provided)</h2>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/{serviceItemId}/{lang}/{filename}/"</span>
   -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
@@ -1393,6 +1578,37 @@ will monitor this reject to disregard or request a new translation job.</p>
 
 <p><code class="prettyprint">GET /api/pub/v1/project/{id}/{serviceItemId}/{lang}/{filename}/</code></p>
 
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>YES</td>
+<td>The project ID</td>
+</tr>
+<tr>
+<td>serviceItemId</td>
+<td>YES</td>
+<td>The Service Item ID</td>
+</tr>
+<tr>
+<td>lang</td>
+<td>YES</td>
+<td>The string language code, when the path does not include a call for the language</td>
+</tr>
+<tr>
+<td>filename</td>
+<td>YES</td>
+<td>The filename as displayed in the <code class="prettyprint">deliveries</code> array, including language directory if any</td>
+</tr>
+</tbody></table>
+
 <h2 id="download-delivered-files-by-job-id">Download Delivered Files by Job ID</h2>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/delivered/{serviceItemFileId}"</span>
   -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
@@ -1409,6 +1625,27 @@ will monitor this reject to disregard or request a new translation job.</p>
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET /api/pub/v1/project/{id}/delivered/{serviceItemFileId}/</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>YES</td>
+<td>The project ID</td>
+</tr>
+<tr>
+<td>serviceItemFileId</td>
+<td>YES</td>
+<td>The service item file (job) ID, returned as part of the jobs structure for <code class="prettyprint">items</code></td>
+</tr>
+</tbody></table>
 
           <h1 id="errors">Errors</h1>
 
