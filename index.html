@@ -1320,6 +1320,90 @@ An example request would be, which would list all pending AND approved projects 
 
 
 
+    PROJECT / UPDATE DUE DATE
+
+
+
+
+-->
+
+<h2 id="update-project-due-date">Update Project Due Date</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/due_date/{newDueDate}"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+  -X POST
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10228</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clientName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bureau Translations"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B-1865-72739"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test project AEM3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sourceLanguage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pt_br"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"quoteDueDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500390746451</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"creationDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1520385139654</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PREPARING"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"grandTotal"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"delivered"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"targetLanguages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"en_us"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"es"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13769</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serviceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serviceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Translation"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"originalFiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"filesDeliveredByManagers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"deliveries"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"words"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"savings"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"grandTotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"jobs"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Updates the Project with the desired new due date. If the date is prior to the date calculated after the <code class="prettyprint">ready</code> invoke, the project may incur Project Management and &ldquo;Rush&rdquo; fees.</p>
+
+<aside class="warning">This endpoint may recalculate the quote costs.</aside>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/pub/v1/project//{id}/due_date/{newDueDate}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>YES</td>
+<td>The project ID</td>
+</tr>
+<tr>
+<td>newDueDate</td>
+<td>YES</td>
+<td>The desired due date, in epoch long (number) format</td>
+</tr>
+</tbody></table>
+
+<!---
+
+
+
+
     PROJECT / GET ITEMS
 
 
@@ -1470,9 +1554,14 @@ will monitor this approval to effectively download the translated files.</p>
 -->
 
 <h2 id="reject-project-jobs-items">Reject Project Jobs / Items</h2>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/reject-job/{serviceItemFileId}"</span>
+
+<blockquote>
+<p>You can send a rejection message in the request body</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>Rejection message as plain string format
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/reject-job/{serviceItemFileId}"</span>
   -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
-  -X POST
+  -X POST -d <span class="s1">'&lt;MESSAGE&gt;'</span>
 </code></pre>
 <blockquote>
 <p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
@@ -1503,6 +1592,22 @@ will monitor this reject to disregard or request a new translation job.</p>
 <td>serviceItemFileId</td>
 <td>YES</td>
 <td>The service item file <code class="prettyprint">job</code> ID, returned as part of the jobs structure for <code class="prettyprint">items</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body">Request Body</h3>
+
+<table><thead>
+<tr>
+<th>Content</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>String</td>
+<td>NO</td>
+<td>A pure text string informed by the user about this rejection action</td>
 </tr>
 </tbody></table>
 
@@ -1644,6 +1749,49 @@ will monitor this reject to disregard or request a new translation job.</p>
 <td>serviceItemFileId</td>
 <td>YES</td>
 <td>The service item file (job) ID, returned as part of the jobs structure for <code class="prettyprint">items</code></td>
+</tr>
+</tbody></table>
+
+<!---
+
+
+
+
+    PROJECT / COMPLETE PROJECT
+
+
+
+
+-->
+
+<h2 id="complete-a-project">Complete a Project</h2>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project/{id}/complete"</span>
+  -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
+  -X POST
+</code></pre>
+<blockquote>
+<p>Response <code class="prettyprint">200</code> <code class="prettyprint">application/json</code></p>
+</blockquote>
+
+<p>Updates the Project by adding a <code class="prettyprint">completed</code> tag to it. This method does not modify any other metadata, and its sole purpose is to provide a communication channel between the API consumer and Bureau Works backoffice. </p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/pub/v1/project/{id}/complete</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>YES</td>
+<td>The project ID</td>
 </tr>
 </tbody></table>
 
