@@ -451,6 +451,13 @@ You must upload all your files to finish the preparation of the project for quot
 
 `POST https://bureau.works/api/pub/v1/project/{id}/file/{serviceItemId}`
 
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+id | YES | The project ID
+serviceItemId | YES | The service item ID, returned as part of the project structure
+
 <!---
 
 
@@ -637,6 +644,12 @@ and in a similar structure.
 
 `POST https://bureau.works/api/pub/v1/project/{id}/ready`
 
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+id | YES | The project ID
+
 <!---
 
 
@@ -667,6 +680,12 @@ accounting/receivables.
 
 `POST https://bureau.works/api/pub/v1/project/{id}/approve`
 
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+id | YES | The project ID
+
 <!---
 
 
@@ -695,6 +714,12 @@ This method will cancel a project, with no penalties involved.
 ### HTTP Request
 
 `POST https://bureau.works/api/pub/v1/project/{id}/cancel`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+id | YES | The project ID
 
 <!---
 
@@ -770,7 +795,7 @@ An example request would be, which would list all pending AND approved projects 
 
 Parameter | Required | Description
 --------- | ------- | -----------
-status | YES | A status to filter the request. Valid statuses are `IN_PREPARATION`, `PENDING`, `APPROVED`, `CANCELLED` and `INVOICED`
+status | YES | A status to filter the request. Valid statuses are `PREPARING`, `PENDING`, `APPROVED`, `CANCELLED` and `INVOICED`
 
 <!---
 
@@ -855,6 +880,12 @@ Retrieves a project by passing its unique `id` to this method.
 
 ### HTTP Request
 `GET /api/pub/v1/project/{id}`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+id | YES | The project ID
 
 <!---
 
@@ -1026,6 +1057,12 @@ This method returns all costs related to the project with `id`. Whether the cost
 ### HTTP Request
 `GET /api/pub/v1/project/{id}/cost`
 
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+id | YES | The project ID
+
 <!---
 
 
@@ -1107,6 +1144,12 @@ per language and unique file within that project and service scope. Possible sta
 ### HTTP Request
 `GET /api/pub/v1/project/{id}/items`
 
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+id | YES | The project ID
+
 <!---
 
 
@@ -1122,8 +1165,9 @@ per language and unique file within that project and service scope. Possible sta
 ## Approve Project Jobs / Items
 
 ```shell
-curl "https://bureau.works/api/pub/v1/project/{id}/approve-job/{jobId}"
+curl "https://bureau.works/api/pub/v1/project/{id}/approve-job/{serviceItemFileId}"
   -H "X-AUTH-TOKEN: <TOKEN>"
+  -X POST
 ```
 
 > Response `200` `application/json`
@@ -1132,7 +1176,14 @@ This endpoint is used in some cases where the client wants to "mark" a given job
 will monitor this approval to effectively download the translated files.
 
 ### HTTP Request
-`GET /api/pub/v1/project/{id}/approve-job/{jobId}`
+`POST /api/pub/v1/project/{id}/approve-job/{serviceItemFileId}`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+id | YES | The project ID
+serviceItemFileId | YES | The service item file `job` ID, returned as part of the jobs structure for `items`
 
 <!---
 
@@ -1148,9 +1199,16 @@ will monitor this approval to effectively download the translated files.
 
 ## Reject Project Jobs / Items
 
+> You can send a rejection message in the request body
+
 ```shell
-curl "https://bureau.works/api/pub/v1/project/{id}/reject-job/{jobId}"
+Rejection message as plain string format
+```
+
+```shell
+curl "https://bureau.works/api/pub/v1/project/{id}/reject-job/{serviceItemFileId}"
   -H "X-AUTH-TOKEN: <TOKEN>"
+  -X POST -d '<MESSAGE>'
 ```
 
 > Response `200` `application/json`
@@ -1159,7 +1217,14 @@ This endpoint is used in some cases where the client wants to "mark" a given job
 will monitor this reject to disregard or request a new translation job.
 
 ### HTTP Request
-`GET /api/pub/v1/project/{id}/reject-job/{jobId}`
+`POST /api/pub/v1/project/{id}/reject-job/{serviceItemFileId}`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+id | YES | The project ID
+serviceItemFileId | YES | The service item file `job` ID, returned as part of the jobs structure for `items`
 
 
 <!---
@@ -1194,6 +1259,14 @@ This endpoint will download a file that is listed in the `deliveries` array of t
 ### HTTP Request
 `GET /api/pub/v1/project/{id}/{serviceItemId}/{filename}/`
 
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+id | YES | The project ID
+serviceItemId | YES | The Service Item ID
+filename | YES | The filename as displayed in the `deliveries` array, including language directory if any
+
 
 ## Download Delivered Files (language provided)
 
@@ -1215,11 +1288,20 @@ This endpoint will download a file that is listed in the `deliveries` array of t
 ### HTTP Request
 `GET /api/pub/v1/project/{id}/{serviceItemId}/{lang}/{filename}/`
 
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+id | YES | The project ID
+serviceItemId | YES | The Service Item ID
+lang | YES | The string language code, when the path does not include a call for the language
+filename | YES | The filename as displayed in the `deliveries` array, including language directory if any
+
 
 ## Download Delivered Files by Job ID
 
 ```shell
-curl "https://bureau.works/api/pub/v1/project/{id}/delivered/{serviceItemFileId}/"
+curl "https://bureau.works/api/pub/v1/project/{id}/delivered/{serviceItemFileId}"
   -H "X-AUTH-TOKEN: <TOKEN>"
 ```
 
@@ -1235,3 +1317,10 @@ This endpoint will download a file that is listed in the `deliveredFile` attribu
 
 ### HTTP Request
 `GET /api/pub/v1/project/{id}/delivered/{serviceItemFileId}/`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+id | YES | The project ID
+serviceItemFileId | YES | The service item file (job) ID, returned as part of the jobs structure for `items`
