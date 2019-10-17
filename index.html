@@ -517,7 +517,7 @@ to push files for translation, and receive the deliverables programatically.</p>
 <h2 id="create-project">Create Project</h2>
 
 <blockquote>
-<p>Request with this <code class="prettyprint">model</code> in the body of the request, where <code class="prettyprint">sourceLanguage</code> and <code class="prettyprint">targetLanguages</code> are codes from the Language API, and <code class="prettyprint">services</code> are IDs from the Service API.</p>
+<p>Request with this <code class="prettyprint">model</code> in the body of the request, where <code class="prettyprint">sourceLanguage</code> and <code class="prettyprint">targetLanguages</code> are codes from the Language API, and <code class="prettyprint">services</code> are IDs from the Service API. You can provide a <code class="prettyprint">projectType</code> to communicate the kind of project, for example, <code class="prettyprint">AEM</code> for Adobe Experience Manager, or <code class="prettyprint">Finance</code> to offer some background on the content at hand.</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"reference"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Test project 004"</span><span class="p">,</span><span class="w">
@@ -525,7 +525,8 @@ to push files for translation, and receive the deliverables programatically.</p>
     </span><span class="s2">"targetLanguages"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"pt_br"</span><span class="p">,</span><span class="w"> </span><span class="s2">"es"</span><span class="p">],</span><span class="w">
     </span><span class="s2">"services"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w">
     </span><span class="s2">"notes"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"You can add some notes here"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"desiredDeliveryDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1500392096126</span><span class="w">
+    </span><span class="s2">"desiredDeliveryDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1500392096126</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"projectType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://bureau.works/api/pub/v1/project"</span>
   -H <span class="s2">"X-AUTH-TOKEN: &lt;TOKEN&gt;"</span>
