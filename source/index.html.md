@@ -314,7 +314,7 @@ This method returns all `Services` available in the API, the most common is `Tra
 
 ## Create Project
 
-> Request with this `model` in the body of the request, where `sourceLanguage` and `targetLanguages` are codes from the Language API, and `services` are IDs from the Service API.
+> Request with this `model` in the body of the request, where `sourceLanguage` and `targetLanguages` are codes from the Language API, and `services` are IDs from the Service API. You can provide a `projectType` to communicate the kind of project, for example, `AEM` for Adobe Experience Manager, or `Finance` to offer some background on the content at hand.
 
 ```json
 {
@@ -323,7 +323,8 @@ This method returns all `Services` available in the API, the most common is `Tra
     "targetLanguages" : ["pt_br", "es"],
     "services" : [1],
     "notes" : "You can add some notes here",
-    "desiredDeliveryDate" : 1500392096126
+    "desiredDeliveryDate" : 1500392096126,
+    "projectType" : null
 }
 ```
 
@@ -1063,6 +1064,82 @@ Parameter | Required | Description
 --------- | ------- | -----------
 id | YES | The project ID
 
+
+<!---
+
+
+
+
+    PROJECT / UPDATE DUE DATE
+
+
+
+
+-->
+
+## Update Project Due Date
+
+```shell
+curl "https://bureau.works/api/pub/v1/project/{id}/due_date/{newDueDate}"
+  -H "X-AUTH-TOKEN: <TOKEN>"
+  -X POST
+```
+
+> Response `200` `application/json`
+
+```json
+{
+    "id": 10228,
+    "clientName": "Bureau Translations",
+    "clientId": 120,
+    "currency": "USD",
+    "name": "B-1865-72739",
+    "reference": "Test project AEM3",
+    "sourceLanguage": "pt_br",
+    "quoteDueDate": 1500390746451,
+    "creationDate": 1520385139654,
+    "status": "PREPARING",
+    "grandTotal": null,
+    "delivered": false,
+    "targetLanguages": [
+        "en_us",
+        "es"
+    ],
+    "tags": [],
+    "items": [
+        {
+            "id": 13769,
+            "serviceId": 1,
+            "serviceName": "Translation",
+            "originalFiles": [],
+            "filesDeliveredByManagers": [],
+            "deliveries": [],
+            "words": 0,
+            "subtotal": 0,
+            "savings": 0,
+            "grandTotal": 0,
+            "jobs": []
+        }
+    ]
+}
+```
+
+Updates the Project with the desired new due date. If the date is prior to the date calculated after the `ready` invoke, the project may incur Project Management and "Rush" fees.
+
+<aside class="warning">This endpoint may recalculate the quote costs.</aside>
+
+### HTTP Request
+`POST /api/pub/v1/project//{id}/due_date/{newDueDate}`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+id | YES | The project ID
+newDueDate | YES | The desired due date, in epoch long (number) format
+
+
+
 <!---
 
 
@@ -1226,6 +1303,12 @@ Parameter | Required | Description
 id | YES | The project ID
 serviceItemFileId | YES | The service item file `job` ID, returned as part of the jobs structure for `items`
 
+### Request Body
+
+Content | Required | Description
+--------- | ------- | -----------
+String | NO | A pure text string informed by the user about this rejection action
+
 
 <!---
 
@@ -1324,3 +1407,36 @@ Parameter | Required | Description
 --------- | ------- | -----------
 id | YES | The project ID
 serviceItemFileId | YES | The service item file (job) ID, returned as part of the jobs structure for `items`
+
+<!---
+
+
+
+
+    PROJECT / COMPLETE PROJECT
+
+
+
+
+-->
+
+## Complete a Project
+
+```shell
+curl "https://bureau.works/api/pub/v1/project/{id}/complete"
+  -H "X-AUTH-TOKEN: <TOKEN>"
+  -X POST
+```
+
+> Response `200` `application/json`
+
+Updates the Project by adding a `completed` tag to it. This method does not modify any other metadata, and its sole purpose is to provide a communication channel between the API consumer and Bureau Works backoffice. 
+
+### HTTP Request
+`POST /api/pub/v1/project/{id}/complete`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+id | YES | The project ID
