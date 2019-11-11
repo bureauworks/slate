@@ -14,11 +14,11 @@ Methods that provide support data for `Terminology` requests.
 
 -->
 
-## Term creation
+## Request create
 
-Request with this `model` in the body of the request, where `language` is code from the Language API, and `glossaryIds` are IDs from the Glossary API.
+> Request with this `model` in the body of the request, where `language` is code from the Language API, and `glossaryIds` are IDs from the Glossary API.
 Possible values for `part` are: `Noun`, `Pronoun`, `Adjective`, `Determiner`, `Verb`, `Adverb`, `Preposition`, `Conjunction` and `Interjection`. 
-Possible values for `gender` are: `Masculine`, `Feminine`, `Neuter` and `NA`. Possible values for `termType` are: `Full` and `Acronym`
+Possible values for `gender` are: `Masculine`, `Feminine` and `Neuter`. Possible values for `termType` are: `Full` and `Acronym`
 
 ```json
 {"terms":
@@ -28,9 +28,6 @@ Possible values for `gender` are: `Masculine`, `Feminine`, `Neuter` and `NA`. Po
             "language":"en_us",
             "definition":"Term definition",
             "usage":"Usage for first term",
-            "productLine":"",
-            "domain":"",
-            "subdomain":"",
             "imageUrl":"",
             "freeText":"",
             "note":"Note about this term",
@@ -76,8 +73,13 @@ curl "https://bureau.works/api/term-arbitration/bulk-create"
 }
 ```
 
-This will create an approval workflow for newly added terms to the selected glossaries.
-You must use the value in `code` fields to populate requests with source or target languages.
+This will create a Term Creation Request for the selected glossaries. The DTO returned by this method contains the following information about the Request created:
+ “id”: - Identification code for the current Term Creation Request
+ “status”:“REQUESTED”, - the value REQUESTED means that the Term Creation Request still needs to be approved by an Admin
+ “type”:“Create” - the value “Create” indicates this is a Creation Request
+ “conceptText”: term text, this field contains the text entered when the request was created
+ “totalOfterms”: contains the number of languages this term need to be translated to (reflects the list of languages supported by the Glossaries the Request is associated to)
+ “targetGlossaries”: list of glossaries to which this current request is associated
 
 ### HTTP Request
 
@@ -97,7 +99,7 @@ You must use the value in `code` fields to populate requests with source or targ
 
 ## Request Update
 
-This method returns an DTO if the update is successful. The response body contains information about the term, such as its ID and language. During the update process, a request is send to the cat tool, which further delays a response.
+> Request with this `model` in the body of the request, where `languages` are codes from the Language API, and `targetConcept` is ID from the Concept Entry API.
 
 ```json
 {
@@ -131,7 +133,7 @@ curl "https://bureau.works/api/term-arbitration/request-update"
     "targetGlossaries":[3475]
 }
 ```
-
+This method returns an DTO if the update is successful. The response body contains information about the term, such as its ID and language. During the update process, a request is send to the cat tool, which further delays a response.
 
 ### HTTP Request
 
@@ -157,7 +159,7 @@ This method returns all Terms related to the arguments in query parameter. These
 ```shell
 curl "https://bureau.works/api/glossary/term/search"
   -H "X-AUTH-TOKEN: <TOKEN>"
-  -X POST -d '<MODEL>'
+  -X GET -d '<MODEL>'
 ```
 
 > Response `200` with a JSON formatted like this:
@@ -259,9 +261,9 @@ caseSensitive | NO | Possible values are: true and false
 exactMatch | NO | Possible values are: true and false
 forbidden | NO | Possible values are: true and false
 glossaryIds | NO | IDs from the Glossary API
-language | NO | Possible values: A only Code from the Language API or 'All' string
-matchType | YES | Possible values are: `Contains`, `StartsWith`, `EndsWith` and `ExactMatch`
-page | YES | Number of page
+language | NO | Possible values: A only Code from the Language API or `All`
+matchType | NO | Possible values are: `Contains`, `StartsWith`, `EndsWith` and `ExactMatch`
+page | YES | Page number
 pageSize | YES | Size of page
 query | NO | String used to search a term 
 rtl | NO | Possible values are: true and false
