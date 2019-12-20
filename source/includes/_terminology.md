@@ -271,3 +271,145 @@ status | NO | Possible value: `Under_Review`
 status | NO | Possible value: `Approved`
 status | NO | Possible value: `Published`
 writable | NO | Possible values are: true and false
+
+<!---
+
+
+
+
+    Search Terms
+
+
+
+
+-->
+
+## Search terms in a segment
+
+This method is responsible for returning all Terms whose text is contained in the segment received as parameter, given the source and target languages list of Glossaries.
+
+```shell
+curl "https://bureau.works/api/glossary/term/search/segment"
+  -H "X-AUTH-TOKEN: <TOKEN>"
+  -X GET -d '<MODEL>'
+```
+
+> Response `200` with a JSON formatted like this:
+
+```json
+[
+    {
+        "sourceTerm": {
+            "id": 996910,
+            "text": "The book",
+            "language": "en_us",
+            "glossaryName": "TB TEST",
+            "forbidden": false,
+            "exactMatch": false,
+            "status": "Published",
+            "caseSensitive": false,
+            "rtl": false,
+            "writable": false,
+            "usage": "",
+            "definition": "",
+            "dnt": null,
+            "gender": null,
+            "termType": "Full",
+            "internal": false,
+            "part": "Noun",
+            "note": "",
+            "createdAt": 1576611416688,
+            "lastModifiedAt": 1576787001958,
+            "nameCreatedBy": "Marcelo Freitas",
+            "nameModifiedBy": "Marcelo Freitas"
+        },
+        "targetTerm": {
+            "id": 996920,
+            "text": "O Livro",
+            "language": "pt_br",
+            "glossaryName": "TB TEST",
+            "forbidden": false,
+            "exactMatch": false,
+            "status": "Published",
+            "caseSensitive": false,
+            "rtl": false,
+            "writable": false,
+            "usage": "",
+            "definition": "",
+            "dnt": null,
+            "gender": null,
+            "termType": "Full",
+            "internal": false,
+            "part": "Noun",
+            "note": "",
+            "createdAt": 1576611416688,
+            "lastModifiedAt": 1576787002892,
+            "nameCreatedBy": "Marcelo Freitas",
+            "nameModifiedBy": "Marcelo Freitas"
+        }
+    },
+    {
+        "sourceTerm": {
+            "id": 996918,
+            "text": "on the table",
+            "language": "en_us",
+            "glossaryName": "TB TEST",
+            "forbidden": false,
+            "exactMatch": false,
+            "status": "Published",
+            "caseSensitive": false,
+            "rtl": false,
+            "writable": false,
+            "usage": "",
+            "definition": "",
+            "dnt": null,
+            "gender": null,
+            "termType": "Full",
+            "internal": false,
+            "part": "Noun",
+            "note": "",
+            "createdAt": 1576611416420,
+            "lastModifiedAt": 1576611484067,
+            "nameCreatedBy": "Marcelo Freitas",
+            "nameModifiedBy": null
+        },
+        "targetTerm": {
+            "id": 996925,
+            "text": "em cima da mesa",
+            "language": "pt_br",
+            "glossaryName": "TB TEST",
+            "forbidden": false,
+            "exactMatch": false,
+            "status": "Published",
+            "caseSensitive": false,
+            "rtl": false,
+            "writable": false,
+            "usage": "",
+            "definition": "",
+            "dnt": null,
+            "gender": null,
+            "termType": "Full",
+            "internal": false,
+            "part": "Noun",
+            "note": "",
+            "createdAt": 1576859108832,
+            "lastModifiedAt": 1576859110005,
+            "nameCreatedBy": "Marcelo Freitas",
+            "nameModifiedBy": "Marcelo Freitas"
+        }
+    }
+]
+```
+
+### HTTP Request
+
+`GET https://bureau.works/api/glossary/term/search/segment`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+segment | YES | String used to search terms 
+sourceLanguage | YES | Possible value: A only Code from the Language API
+targetLanguage | NO | Possible value: A only Code from the Language API
+glossaryIds | NO | IDs from the Glossary API
